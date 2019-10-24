@@ -1,0 +1,24 @@
+<div *ngIf="user.id_user_type===3">
+  <div class="row text-center justify-content-center m-0">
+    <div class="col-lg-10 col-md-10 col-sm-12">
+        <h3>Próximos Partidos</h3>
+        <div *ngFor="let partido of partidos">
+          <div class="partido">
+            <div class="equipo">
+              <img src="assets{{ partido.localshield }}" alt="" srcset="">
+              <label>{{ partido.localname }}</label>
+              <input type="text" class="marcador">
+            </div>
+            <div class="vs">
+              <label>VS</label>
+            </div>
+            <div class="equipo">
+              <input type="text" class="marcador">
+              <img src="assets{{ partido.visitorshield }}" alt="" srcset="">
+              <label>{{ partido.visitorname }}</label>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

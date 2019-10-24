@@ -1,0 +1,43 @@
+.partido {
+  width: 80%;
+  margin: 5px 10%;
+  background-color: gray;
+  display: flex;
+}
+
+.partido > .equipo {
+  width: 45%;
+}
+
+.partido > .vs {
+  width: 10%;
+}
+
+.equipo > img {
+  width: 10%;
+  height: 80%;
+  margin: 3px;
+}
+
+.equipo > label {
+  color: white;
+  margin: 5px 20px 5px 10px;
+  font-weight: 900;
+  font-style: italic;
+  font-size: larger;
+}
+
+.vs > label {
+  color: white;
+  margin: 5px 20px 5px 10px;
+  font-weight: 900;
+  font-style: italic;
+  font-size: larger;
+}
+
+.marcador {
+  width: 30px;
+  border-radius: 30%;
+}
+
+

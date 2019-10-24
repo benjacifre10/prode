@@ -1,0 +1,48 @@
+<div class="row text-center justify-content-center m-0">
+  <div class="col-lg-10 col-md-10 col-sm-12">
+      <h3>Fechas</h3>
+  </div>
+</div>
+<br />
+<div class="row justify-content-center m-0">
+  <div class="col-lg-10 col-md-10 col-sm-12">
+      <table class="table table-bordeless">
+          <th>Numero</th>
+          <th>Partidos</th>
+          <th>Borrar</th>
+          <tr *ngFor="let week of weeks">
+              <td>{{ week.number }}</td>
+              <td><a routerLink="/match-week/{{ week.id_fixture }},{{ week.id_week }},{{ week.number }}" class="item-link text-primary"><i class="fas fa-calendar-week"></i></a></td>
+              <td><span class="btn-delete text-danger" (click)="delete(week.id_week)"><i class="fas fa-trash-alt"></i></span></td>
+          </tr>
+      </table>
+  </div>
+</div>
+<br>
+<hr>
+<div class="row justify-content-center m-0">
+  <div class="col-lg-10 col-md-10 col-sm-12">
+    <form action="" method="post" #form="ngForm" (ngSubmit)="insertWeek(form)" novalidate class="form-inline">
+      <div class="col-lg-3 col-md-3 col-sm-6">
+        <div class="form-group">
+          <label for="number" class="mr-2">Número</label>
+          <input type="number" id="number" name="number" [(ngModel)]="week.number" #number="ngModel" class="form-control" required>
+          <div class="error" *ngIf="form.submitted && number.invalid">
+          <p class="alert alert-danger" *ngIf="number.errors.required">Este campo es requerido</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-6">
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block">Agregar <i class="fas fa-plus"></i></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-12">
+    <button routerLink="/fixture" class="btn btn-primary ml-2"><i class="far fa-hand-point-left"></i></button>
+  </div>
+</div>

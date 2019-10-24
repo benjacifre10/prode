@@ -1,0 +1,27 @@
+<div class="row text-center justify-content-center m-0">
+    <div class="col-lg-10 col-md-10 col-sm-12">
+        <h3>Lista de Usuarios</h3>
+    </div>
+</div>
+<br />
+<div class="row justify-content-center m-0">
+    <div class="col-lg-10 col-md-10 col-sm-12">
+        <table class="table table-bordeless">
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Tipo Usuario</th>
+            <th>Detalles</th>
+            <th>Borrar</th>
+            <tr *ngFor="let user of users">
+                <td>{{ user.name }}</td>
+                <td>{{ user.surname }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.id_user_type }}</td>
+                <td><a routerLink="/users/{{ user.id_user }}" class="item-link"><i class="fas fa-eye"></i></a></td>
+                <td><span class="btn-delete text-danger" (click)="delete(user.id_user)"><i class="fas fa-trash-alt"></i></span></td>
+            </tr>
+        </table>
+    </div>
+</div>
+

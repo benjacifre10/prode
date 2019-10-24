@@ -1,0 +1,40 @@
+<div class="row text-center justify-content-center m-0">
+    <div class="col-lg-10 col-md-10 col-sm-12">
+        <h3>Fixture</h3>
+    </div>
+</div>
+<br />
+<div class="row justify-content-center m-0">
+    <div class="col-lg-10 col-md-10 col-sm-12">
+        <table class="table table-bordeless">
+            <th>Torneo</th>
+            <th>Fixture</th>
+            <th>Borrar</th>
+            <tr *ngFor="let fixture of fixtures">
+                <td>{{ fixture.name }}</td>
+                <td><a routerLink="/week/{{ fixture.id_fixture }}" class="item-link text-primary"><i class="fas fa-calendar-week"></i></a></td>
+                <td><span class="btn-delete text-danger" (click)="delete(fixture.id_tournament)"><i class="fas fa-trash-alt"></i></span></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="row justify-content-center m-0">
+  <div class="col-lg-10 col-md-10 col-sm-12">
+    <form action="" method="post" #form="ngForm" (ngSubmit)="insertFixture(form)" novalidate class="form-inline">
+      <div class="col-lg-5 col-md-5 col-sm-6">
+        <div class="form-group">
+          <select class="browser-default custom-select w-100" id="id_tournament" name="id_tournament" [ngModel]="fixture.id_tournament" #id_tournament="ngModel">
+            <option selected disabled [value]="0">Torneos...</option>
+            <option *ngFor="let item of tournaments" [value]="item.id_tournament">{{ item.name }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-lg-5 col-md-5 col-sm-6">
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block">Agregar <i class="fas fa-plus"></i></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+

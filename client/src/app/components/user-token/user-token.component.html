@@ -1,0 +1,29 @@
+<div class="row text-center justify-content-center m-0">
+  <div class="col-lg-10 col-md-10 col-sm-12">
+      <h3>Tokens por Usuario</h3>
+  </div>
+</div>
+<br />
+<div class="row justify-content-center m-0">
+  <div class="col-lg-10 col-md-10 col-sm-12">
+      <table class="table table-bordeless">
+          <th>Nombre</th>
+          <th>Fecha</th>
+          <th>Monto</th>
+          <th>Detalles</th>
+          <th>Borrar</th>
+          <tr *ngFor="let usertoken of final">
+              <td>{{ usertoken.name_surname }}</td>
+              <td>{{ usertoken.update_date | date: 'dd-MM-yyyy hh:mm:ss a' }}</td>
+              <td>${{ usertoken.amount }}</td>
+              <td><a class="item-link text-primary" (click)="openModal(usertoken)"><i class="fas fa-eye"></i></a></td>
+              <td><span class="btn-delete text-danger" (click)="delete(usertoken.id_user)"><i class="fas fa-trash-alt"></i></span></td>
+          </tr>
+      </table>
+  </div>
+</div>
+<div class="row justify-content-center m-0">
+  <div class="col-lg-10 col-md-10 col-sm-12">
+      <button class="btn btn-primary btn-block" (click)="openModal()">Agregar <i class="fas fa-plus"></i></button>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="modal-header bg-info text-white">
+  <h4 class="modal-title">{{ title }}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row">
+      <div class="col-md-12">
+          <form action="" method="post" #form="ngForm" (ngSubmit)="updateOrInsert(form)" novalidate>
+          <!-- nombre -->
+          <div class="form-group">
+            <select class="browser-default custom-select w-100" id="id_user" name="id_user" [ngModel]="usertoken.id_user" #id_user="ngModel">
+              <option selected disabled [value]="0">Usuario...</option>
+              <option *ngFor="let user of users" [value]="user.id_user">{{ user.name}} {{user.surname}}</option>
+            </select>
+          </div>
+          <!-- fecha -->
+          <div class="form-group">
+            <label for="update_date">Fecha Actualización</label>
+            <input type="datetime-local" id="update_date" name="update_date" [ngModel]="usertoken.update_date | date: 'yyyy-MM-ddTHH:mm'" #update_date="ngModel" class="form-control" required disabled>
+          </div>
+          <!-- monto -->
+          <div class="form-group">
+            <label for="amount">Monto</label>
+            <input type="text" (keypress)="keyPress($event)" id="amount" name="amount" [ngModel]="usertoken.amount" #amount="ngModel" class="form-control">
+            <div class="error" *ngIf="form.submitted && amount.value <= 0">
+              <p class="alert alert-danger">Este campo es requerido</p>
+            </div>
+          </div>
+          <!-- button -->
+          <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-sm btn-block"><i class="fas fa-save fa-2x"></i></button>
+          </div>
+          </form>
+      </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-light" (click)="activeModal.close('Close click')">Close</button>
+</div>
+

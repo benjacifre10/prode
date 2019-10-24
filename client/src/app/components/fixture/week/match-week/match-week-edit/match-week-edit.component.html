@@ -1,0 +1,65 @@
+<div class="modal-header bg-info text-white">
+    <h4 class="modal-title">{{ title }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <form action="" method="post" #form="ngForm" (ngSubmit)="updateOrInsert(form)" novalidate>
+            <!-- local -->
+            <div class="form-group">
+              <select class="browser-default custom-select w-100" id="local" name="local" [ngModel]="matchWeek.local" #local="ngModel">
+                <option selected disabled [value]="0">Equipo Local...</option>
+                <option *ngFor="let team of teams" [value]="team.id_team">{{ team.name }}</option>
+
+              </select>
+            </div>
+            <!-- visitor -->
+            <div class="form-group">
+              <select class="browser-default custom-select w-100" id="visitor" name="visitor" [ngModel]="matchWeek.visitor" #visitor="ngModel">
+                <option selected disabled [value]="0">Equipo Visitante...</option>
+                <option *ngFor="let team of teams" [value]="team.id_team">{{ team.name }}</option>
+              </select>
+            </div>
+            <div class="row">
+              <!-- goles a favor -->
+              <div class="col-6">
+                <div class="form-group">
+                  <input type="number" id="goals_for" name="goals_for" [ngModel]="matchWeek.goals_for" #goals_for="ngModel" class="form-control" placeholder="Goles Local" required>
+                  <div class="error" *ngIf="form.submitted && goals_for.invalid">
+                    <p class="alert alert-danger" *ngIf="goals_for.errors.required">Este campo es requerido</p>
+                  </div>
+                </div>
+              </div>
+              <!-- goles en contra -->
+              <div class="col-6">
+                  <div class="form-group">
+                    <input type="number" id="goals_against" name="goals_against" [ngModel]="matchWeek.goals_against" #goals_against="ngModel" class="form-control" required min="1">
+                    <div class="error" *ngIf="form.submitted && goals_against.invalid">
+                        <p class="alert alert-danger" *ngIf="goals_against.errors.required">Este campo es requerido</p>
+                      <p class="alert alert-danger" *ngIf="goals_against.errors.min">Mayor a 0</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <!-- fecha -->
+            <div class="form-group">
+              <label for="dateMatch">Fecha Partido</label>
+              <input type="datetime-local" id="dateMatch" name="dateMatch" [ngModel]="matchWeek.dateMatch | date: 'yyyy-MM-ddTHH:mm'" #dateMatch="ngModel" class="form-control" required>
+              <div class="error" *ngIf="form.submitted && dateMatch.invalid">
+                <p class="alert alert-danger" *ngIf="dateMatch.errors.required">Este campo es requerido</p>
+              </div>
+            </div>
+            <!-- button -->
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-sm btn-block"><i class="fas fa-save fa-2x"></i></button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="activeModal.close('Close click')">Close</button>
+</div>

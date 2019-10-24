@@ -1,0 +1,105 @@
+<div class="container" *ngIf="!access">
+  <ul class="nav d-flex justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link text-primary" href="/register"><i class="fas fa-user-plus"></i>Registrar</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-primary" routerLink="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+    </li>
+  </ul>
+  <hr />
+  <router-outlet></router-outlet>
+</div>
+<div class="menuSide" *ngIf="access">
+  <div class="wrapper">
+    <nav id="sidebar" name="sidebar">
+      <div class="sidebar-header">
+        <h3>Prode Fútbol</h3>
+      </div>
+      <ul class="list-unstyled components">
+        <p>{{ user?.name + ' ' + user?.surname}}</p>
+        <li>
+          <a routerLink="/home"><i class="fas fa-home"></i> Home</a>
+        </li>
+        <li>
+          <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" *ngIf="user.id_user_type == 3">Page</a>
+          <ul class="collapse list-unstyled" id="pageSubmenu">
+            <li>
+              <a href="#">page1</a>
+            </li>
+            <li>
+              <a href="#">page2</a>
+            </li>
+            <li>
+              <a href="#">page3</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#userSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" *ngIf="user.id_user_type == 1"><i class="fas fa-user-cog"></i> Usuarios</a>
+          <ul class="collapse list-unstyled" id="userSubmenu">
+            <li>
+              <a routerLink="/users"><i class="fas fa-users"></i> Gestión Usuarios</a>
+            </li>
+            <li>
+              <a routerLink="/user-type"><i class="fas fa-user-shield"></i> Tipo Usuarios</a>
+            </li>
+            <li>
+              <a routerLink="/user-token"><i class="fas fa-coins"></i> Token Usuarios</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#tournamentSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" *ngIf="user.id_user_type == 1"><i class="fab fa-wpforms"></i> Gestión Torneos</a>
+          <ul class="collapse list-unstyled" id="tournamentSubmenu">
+            <li>
+              <a routerLink="/tournament"><i class="fas fa-trophy"></i> Torneos </a>
+            </li>
+            <li>
+              <a routerLink="/team"><i class="fas fa-shield-alt"></i> Equipos </a>
+            </li>
+            <li>
+              <a routerLink="/fixture"><i class="fas fa-calendar-alt"></i> Fixture </a>
+            </li>
+          </ul>
+        </li>
+        <li *ngIf="user.id_user_type == 3">
+          <a href="#">Contact Us</a>
+        </li>
+      </ul>
+      <ul class="list-unstyled CTAs d-block">
+        <li>
+          <a class="logout" (click)="logout()">Salir</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="content">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button type="button" id="sidebarCollapse" class="btn btn-info" (click)="toggle()">
+          <i class="fa fa-align-justify"></i>
+        </button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" routerLink="/home"><i class="fas fa-home"></i> <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <ng-template #popContent>Hello, <b>{{name}}</b>!</ng-template>
+                <ng-template #popTitle>Fancy <b>content!!</b></ng-template>
+              <a class="btn nav-link" [ngbPopover]="popContent" [popoverTitle]="popTitle"><i class="fas fa-futbol"></i>{{ message }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn-outline-dark" (click)="logout()"><i class="fas fa-sign-out-alt"></i></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+

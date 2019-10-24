@@ -1,0 +1,30 @@
+<div class="modal-header bg-info text-white">
+    <h4 class="modal-title">{{ title }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <form action="" method="post" #form="ngForm" (ngSubmit)="updateOrInsert(form)" novalidate>
+            <!-- nombre -->
+            <div class="form-group">
+                <label for="name">Nombre</label>
+                <input type="text" id="name" name="name" [ngModel]="tournament.name" #name="ngModel" class="form-control" required maxlength="50">
+                <div class="error" *ngIf="form.submitted && name.invalid">
+                <p class="alert alert-danger" *ngIf="name.errors.required">Este campo es requerido</p>
+                <p class="alert alert-danger" *ngIf="name.errors.maxlength">Maximo 50 caracteres</p>
+                </div>
+            </div>
+            <!-- button -->
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-sm btn-block"><i class="fas fa-save fa-2x"></i></button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="activeModal.close('Close click')">Close</button>
+</div>

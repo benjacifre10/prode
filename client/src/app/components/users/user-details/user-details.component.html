@@ -1,0 +1,65 @@
+<h4>Detalles del Usuario</h4>
+<br>
+<div class="row">
+    <div class="col-md-6">
+        <p>Desea modificar su información?</p>
+        <form action="" method="post" #form="ngForm" (ngSubmit)="onSave(form)" novalidate>
+            <!-- nombre -->
+            <div class="form-group">
+                <label for="name">Nombre</label>
+                <input type="text" id="name" name="name" [(ngModel)]="user.name" #name="ngModel" class="form-control" required maxlength="50">
+                <div class="error" *ngIf="form.submitted && name.invalid">
+                <p class="alert alert-danger" *ngIf="name.errors.required">Este campo es requerido</p>
+                <p class="alert alert-danger" *ngIf="name.errors.maxlength">Maximo 50 caracteres</p>
+                </div>
+            </div>
+            <!-- apellido -->
+            <div class="form-group">
+                <label for="surname">Apellido</label>
+                <input type="text" id="surname" name="surname" [(ngModel)]="user.surname" #surname="ngModel" class="form-control" required maxlength="50">
+                <div class="error" *ngIf="form.submitted && surname.invalid">
+                <p class="alert alert-danger" *ngIf="surname.errors.required">Este campo es requerido</p>
+                <p class="alert alert-danger" *ngIf="surname.errors.maxlength">Maximo 50 caracteres</p>
+                </div>
+            </div>
+            <!-- email -->
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" [(ngModel)]="user.email" #email="ngModel" class="form-control" required email>
+                <div class="error" *ngIf="form.submitted && email.invalid">
+                <p class="alert alert-danger" *ngIf="email.errors.required">Este campo es requerido</p>
+                <p class="alert alert-danger" *ngIf="email.errors.email">Email inválido</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-info btn-sm mr-1"><i class="fas fa-save"></i> Guardar</button>
+                <button type="reset" class="btn btn-dark btn-sm"><i class="fas fa-broom"></i> Limpiar</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <p>Sus datos personales</p>
+        <table class="table table-bordered">
+            <tr>
+                <td><strong>Id</strong></td>
+                <td>{{ user.id_user }}</td>
+            </tr>
+            <tr>
+                <td><strong>Nombre</strong></td>
+                <td>{{ user.name }}</td>
+            </tr>
+            <tr>
+                <td><strong>Apellido</strong></td>
+                <td>{{ user.surname }}</td>
+            </tr>
+            <tr>
+                <td><strong>Email</strong></td>
+                <td><button type="button" class="btn btn-link">{{ user.email }}</button></td>
+            </tr>
+            <tr>
+                <td><strong>Tipo Usuario</strong></td>
+                <td>{{ user.id_user_type }}</td>
+            </tr>
+        </table>
+    </div>
+</div>

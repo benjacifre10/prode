@@ -1,0 +1,26 @@
+<div class="row text-center justify-content-center m-0">
+    <div class="col-lg-10 col-md-10 col-sm-12">
+        <h3>Lista Tipo de Usuarios</h3>
+    </div>
+</div>
+<br />
+<div class="row justify-content-center m-0">
+    <div class="col-lg-10 col-md-10 col-sm-12">
+        <table class="table table-bordeless">
+            <th>Nombre</th>
+            <th>Detalles</th>
+            <th>Borrar</th>
+            <tr *ngFor="let user_type of usertypes">
+                <td>{{ user_type.name }}</td>
+                <td><a class="item-link text-primary" (click)="openModal(user_type)"><i class="fas fa-eye"></i></a></td>
+                <td><span class="btn-delete text-danger" (click)="delete(user_type.id_user_type)"><i class="fas fa-trash-alt"></i></span></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="row justify-content-center m-0">
+    <div class="col-lg-10 col-md-10 col-sm-12">
+        <button class="btn btn-primary btn-block" (click)="openModal()">Agregar <i class="fas fa-plus"></i></button>
+    </div>
+</div>
+
